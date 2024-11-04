@@ -1,0 +1,31 @@
+.mainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px;
+  width: 300px;
+}
+
+.itemContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.icon {
+  margin-right: 10px;
+  vertical-align: text-top;
+}
+
+.deleteButton {
+  padding: 5px 10px;
+  background-color: #0866ff;
+  color: #ffffff;
+  border: solid 1px gray;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.deleteButton:hover {
+  background-color: rgb(230, 67, 67);
+}

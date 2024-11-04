@@ -1,0 +1,15 @@
+.mainContainer {
+  margin-bottom: 30px;
+}
+
+.inputContainer {
+  width: 360px;
+  background-color: #ffffff;
+  color: #242424;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px 10px;
+  outline-color: #0866ff;
+  /* background-color: #f0f2f5; */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

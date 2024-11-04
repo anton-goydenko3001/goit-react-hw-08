@@ -1,0 +1,48 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 15px;
+  gap: 15px;
+  width: 360px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: #f0f2f5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputValue {
+  background-color: #ffffff;
+  color: #242424;
+  border: 1px solid #dddfe2;
+  border-radius: 5px;
+  padding: 5px 10px;
+  outline-color: #0866ff;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 14px;
+}
+
+.addButton {
+  padding: 5px 10px;
+  background-color: #0866ff;
+  color: #ffffff;
+  border: solid 1px gray;
+  border-radius: 5px;
+  width: 140px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background-color 0.3s;
+}
+
+.addButton:hover {
+  background-color: #42b72a;
+}
