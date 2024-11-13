@@ -1,0 +1,21 @@
+.mainContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 5px;
+}
+
+.navContainer {
+  padding: 10px 5px;
+  font-weight: 600;
+  font-size: 20px;
+  color: black;
+  outline: none;
+  transition: color 0.4s ease;
+}
+
+.navContainer:hover {
+  cursor: pointer;
+  color: blue;
+}

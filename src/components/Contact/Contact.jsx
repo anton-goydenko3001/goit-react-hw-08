@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import style from "./Contact.module.css";
 import { PiPhoneBold, PiUserBold } from "react-icons/pi";
-import { deleteContacts } from "../../redux/contactsOps";
+import { deleteContacts } from "../../redux/contacts/operations";
 import toast from "react-hot-toast";
+import style from "./Contact.module.css";
 
 export default function Contact({ contact }) {
   const dispatch = useDispatch();

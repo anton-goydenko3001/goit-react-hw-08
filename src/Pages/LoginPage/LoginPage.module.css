@@ -1,0 +1,28 @@
+.loginContainer {
+  min-width: 360px;
+  max-width: 1280px;
+  margin: 80px auto;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 20px;
+}
+.textContainer {
+  width: 40%;
+  font-size: 1.5rem;
+  color: #333333;
+}
+
+.formContainer {
+  width: 50%;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+p {
+  margin: 0;
+  line-height: 1.5;
+}

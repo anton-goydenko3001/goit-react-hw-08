@@ -1,41 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
-import ContactForm from "../ContactForm/ContactForm";
-import ContactList from "../ContactList/ContactList";
-import SearchBox from "../SearchBox/SearchBox";
-import "./App.css";
-import { selectError, selectIsLoading } from "../../redux/contactsSlice";
-import { useEffect } from "react";
-import { fetchContacts } from "../../redux/contactsOps";
-import Loader from "../Loader/Loader";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import { Toaster, toast } from "react-hot-toast";
+import { selectIsRefreshing } from "../../redux/auth/selectors";
+import { lazy, Suspense, useEffect } from "react";
+import { refreshUser } from "../../redux/auth/operations";
+import { Route, Routes } from "react-router-dom";
+import { RestrictedRoute } from "../RestrictedRoute";
+import { PrivateRoute } from "../PrivateRoute";
+import { Toaster } from "react-hot-toast";
+import Layout from "../Layout/Layout";
+
+const HomePage = lazy(() => import("../../Pages/HomePage/HomePage"));
+const RegistrationPage = lazy(() =>
+  import("../../Pages/RegistrationPage/RegistrationPage")
+);
+const LoginPage = lazy(() => import("../../Pages/LoginPage/LoginPage"));
+const ContactsPage = lazy(() =>
+  import("../../Pages/ContactsPage/ContactsPage")
+);
 
 export default function App() {
+  const isRefreshing = useSelector(selectIsRefreshing);
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchContacts())
-      .unwrap()
-      .then(() => {
-        toast.success("The phonebook is loaded!");
-      })
-      .catch((error) => {
-        toast.error("Failed to download phonebook!");
-      });
+    dispatch(refreshUser());
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      {error && <ErrorMessage />}
-      {isLoading && <Loader />}
-      <SearchBox />
-      <ContactList />
+    <Layout>
       <Toaster
-        position="top-right"
+        position="top-center"
         toastOptions={{
           success: {
             style: {
@@ -50,6 +43,42 @@ export default function App() {
           },
         }}
       />
-    </div>
+      {isRefreshing ? (
+        <b>Refreshing user, please wait...</b>
+      ) : (
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/register"
+              element={
+                <RestrictedRoute
+                  component={<RegistrationPage />}
+                  redirectTo={"/"}
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute
+                  component={<LoginPage />}
+                  redirectTo={"/contacts"}
+                />
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute
+                  component={<ContactsPage />}
+                  redirectTo={"/login"}
+                />
+              }
+            />
+          </Routes>
+        </Suspense>
+      )}
+    </Layout>
   );
 }
